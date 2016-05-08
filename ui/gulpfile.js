@@ -12,7 +12,7 @@ gulp.task('clean', function (cb) {
 gulp.task('webpack', function () {
     gulp.src('./src/**')
         .pipe(webpack(webpackConfig))
-        .pipe(gulp.dest('./var/www/build'));
+        .pipe(gulp.dest('../var/www/build'));
 });
 
 gulp.task('reload', function () {
