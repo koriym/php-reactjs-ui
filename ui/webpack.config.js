@@ -4,9 +4,7 @@ var path = require("path");
 module.exports = {
     entry: {
         react: 'src/react.js',
-        min: 'src/testing_examples/min.js',
         table: 'src/testing_examples/table.js',
-        helloworld: 'src/testing_examples/helloworld.js'
     },
     output: {
         filename: '[name].bundle.js',
