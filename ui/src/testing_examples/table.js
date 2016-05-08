@@ -7,20 +7,4 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
-global.Table = React.createClass({
-  render: function () {
-    var rows = this.props.data.map(function (row) {
-      var cells = row.map(function(cell) {
-        return <td>{cell}</td>;
-      });
-
-      return <tr>{cells}</tr>;
-    });
-
-    return (
-      <table>
-        <tbody>{rows}</tbody>
-      </table>
-    );
-  }
-});
+global.Table = require('./components/table');
