@@ -1,0 +1,7 @@
+{
+    "require": {
+        "php": "^7.0",
+        "ext-v8js": "*",
+        "reactjs/react-php-v8js": "^2.0"
+    }
+}
