@@ -12,6 +12,7 @@ module.exports = {
         filename: '[name].bundle.js',
         path: __dirname + '/../var/www/build'
     },
+    devtool: 'inline-source-map',
     module: {
         preLoaders: [
             {
