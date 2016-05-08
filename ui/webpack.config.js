@@ -8,7 +8,7 @@ module.exports = {
     },
     output: {
         filename: '[name].bundle.js',
-        path: __dirname + 'public/build'
+        path: __dirname + '/../var/www/build'
     },
     module: {
         preLoaders: [
