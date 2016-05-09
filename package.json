@@ -1,7 +1,7 @@
 {
-  "name": "plus-react-ui",
+  "name": "bear-ui",
   "version": "0.1.0",
-  "description": "React-Webpack-Karma-bolierplate for exisiting app",
+  "description": "React-Webpack-Karma bolierplate for exisiting app",
   "repository": {
     "type": "git",
     "url": ""
@@ -9,13 +9,13 @@
   "main": "webpack.config.js",
   "scripts": {
     "clean": "$(npm bin)/rimraf var/www/build && mkdir var/www/build",
-    "build": "npm run clean && BABEL_ENV=production $(npm bin)/webpack -p --progress --config ui/webpack.config.js",
-    "start": "gulp --gulpfile ui/gulpfile.js start",
+    "build": "npm run clean && $(npm bin)/webpack -p --progress --config ui/webpack.config.js",
+    "start": "npm run build && gulp --gulpfile ui/gulpfile.js start",
     "start-hot": "gulp --gulpfile ui/gulpfile.js start-hot",
     "test": "$(npm bin)/karma start ui/karma.conf.js",
     "lint": "$(npm bin)/eslint ui/src; exit 0;"
   },
-  "author": "Kuma System",
+  "author": "Akihito Koriyama",
   "peerDependencies": {
     "react": ">=15.0.1",
     "react-dom": ">=15.0.1"
