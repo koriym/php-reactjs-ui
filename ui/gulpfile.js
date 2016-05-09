@@ -54,7 +54,8 @@ gulp.task('watch-reload', function () {
 gulp.task('watch-ui', function () {
     gulp.watch([
         './src/**/*.js',
-        './src/**/*.css'
+        './src/**/*.css',
+        './*.js'
     ], ['webpack']);
 });
 
