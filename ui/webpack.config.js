@@ -4,6 +4,7 @@ var path = require("path");
 module.exports = {
     entry: {
         react: 'src/react.js',
+        helloworld: 'src/testing_examples/helloworld.js',
         table: 'src/testing_examples/table.js',
     },
     output: {

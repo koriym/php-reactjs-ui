@@ -1,19 +1,17 @@
 import React from 'react';
 
-function HelloWorld(props) {
-  return (
-    <div>
-      Hello {props.name} !
-    </div>
-  );
-}
+const HelloWorld = props => (
+  <div>
+    Hello {props.name} !
+  </div>
+);
 
 HelloWorld.propTypes = {
   name: React.PropTypes.array.isRequired,
 };
 
 HelloWorld.defaultProps = {
-  name: ['World!'],
+  name: ['Sekai'],
 };
 
 export default HelloWorld;
