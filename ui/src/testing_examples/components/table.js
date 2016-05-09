@@ -1,19 +1,25 @@
-let Table = React.createClass({
-  render () {
-    var rows = this.props.data.map(function (row) {
-      var cells = row.map(function(cell) {
-        return <td>{cell}</td>;
-      });
+// https://github.com/reactjs/react-php-v8js/blob/master/example/src/table.js
 
-      return <tr>{cells}</tr>;
-    });
+import React from 'react';
 
-    return (
-      <table>
-        <tbody>{rows}</tbody>
-      </table>
-    );
-  }
-});
+const Table = (props) => {
+  const rows = props.data.map((row, i) => {
+    let cells = row.map((cell, j) => (
+      <td key={j}>{cell}</td>
+    ));
+
+    return <tr key={i}>{cells}</tr>;
+  });
+
+  return (
+    <table>
+      <tbody>{rows}</tbody>
+    </table>
+  );
+};
+
+Table.propTypes = {
+  data: React.PropTypes.array.isRequired,
+};
 
 module.exports = Table;

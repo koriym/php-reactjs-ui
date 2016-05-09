@@ -1,1 +1,1 @@
-global.Table = require('./components/table');
+global.Table = require('./components/Table');
