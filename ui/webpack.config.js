@@ -1,5 +1,6 @@
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var path = require("path");
+var uiConfig = require('./ui.config.js');
 
 module.exports = {
     entry: {
@@ -9,7 +10,7 @@ module.exports = {
     },
     output: {
         filename: '[name].bundle.js',
-        path: __dirname + '/../var/www/build'
+        path: uiConfig.build
     },
     devtool: 'inline-source-map',
     module: {

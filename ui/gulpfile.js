@@ -4,15 +4,17 @@ var browserSync = require('browser-sync');
 var webpack = require('gulp-webpack');
 var webpackConfig = require('./webpack.config.js');
 var rimraf = require('rimraf');
+var uiConfig = require('./ui.config.js');
+
 
 gulp.task('clean', function (cb) {
-    rimraf('../var/tmp/*', cb);
+    rimraf(uiConfig.cleanup_dir, cb);
 });
 
 gulp.task('webpack', function () {
     gulp.src('./src/**')
         .pipe(webpack(webpackConfig))
-        .pipe(gulp.dest('../var/www/build'));
+        .pipe(gulp.dest(uiConfig.public + '/build'));
 });
 
 gulp.task('reload', function () {
@@ -26,23 +28,19 @@ gulp.task('reload-php', ['clean'], function () {
 gulp.task('php', function () {
     connect.server({
         port: 8080,
-        base: '../var/www'
+        base: uiConfig.public
     })
 });
 
 gulp.task('browser-sync', function () {
     browserSync({
-        proxy: '127.0.0.1:8080'
+        proxy: uiConfig.server
     });
 });
 
 gulp.task('watch-reload', function () {
     gulp.watch(
-        [
-            '../src/**/*.twig',
-            '../var/lib/twig/*.twig',
-            '../var/www/build/*'
-        ],
+        uiConfig.watch_to_sync,
         ['reload']
     );
     gulp.watch(
