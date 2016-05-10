@@ -1,16 +1,4 @@
 <?php
-/**!
- * Copyright (c) 2014, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- */
-
-/**
- * Example of using the ReactJS class
- */
 
 require __DIR__ . '/../../vendor/autoload.php';
 
@@ -23,11 +11,11 @@ $rjs = new ReactJS(
 
 // data to be passed to the component
 $data =
-    array('data' => [
+    ['data' => [
         [1, 2, 3],
         [4, 5, 6],
         [7, 8, 9]
-    ]);
+    ]];
 
 // set the component and its data
 // after this you can call getMarkup()/getJS()
@@ -39,7 +27,7 @@ $rjs->setComponent('Table', $data);
 <!doctype>
 <html>
 <head>
-    <title>React SSR</title>
+    <title>React server-side rendering (SSR)</title>
     <!-- css and stuff -->
 </head>
 <body>
