@@ -17,12 +17,12 @@
  * [react-php-v8js](https://github.com/reactjs/react-php-v8js) PHP library that renders React components on the server
 
  
-## Prerequisites
+## 前提条件
 
  * [Node](https://nodejs.org/en/)
- * [V8Js PHP extension](https://github.com/phpv8/v8js)  (optional)
+ * [V8Js PHP extension](https://github.com/phpv8/v8js)  (オプション)
  
-## Install
+## インストール
  
 最初に`ui`フォルダと`package.json`を既存のPHPプロジェクトのルートに設置します。
 
@@ -70,7 +70,7 @@ composer require reactjs/react-php-v8js
 
 既存のPHPプロジェクトへの追加が容易です。
 
-## Config
+## 設定
 
 アプリケーションディレクトリのの設定を`ui/ui.config.js`で行います。
 
@@ -93,7 +93,7 @@ module.exports = {
 
 ReactでSSRを行うためには最初の`react`のエントリーが必要です。
 
-## Start
+## 実行
 
 ```
 npm start
@@ -108,7 +108,7 @@ npm run start-hot
 PHPやJS、Twigのテンプレートファイル等が更新された時にブラウザを自動で再読み込みさせるためには`start-hot`コマンドで使用します。
 
 
-## Test
+## テスト
 
 ```
 npm test      
@@ -123,7 +123,7 @@ npm run lint
 [Eslint](http://eslint.org/)を実行します。デフォルトのルールは[Airbnb](http://mitsuruog.github.io/javascript-style-guide/)です。変更するには`.eslintrc`を編集します。
 
 
-## Demo
+## デモ
 
 このリポジトリをそのまま使いコマンドの実行や`v8js`の動作確認をすることができます。デモコードは公式の[example](https://github.com/reactjs/react-php-v8js/tree/master/example)をes6+Airbnbスタイルで書き直しています。
 
