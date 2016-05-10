@@ -3,11 +3,7 @@ var path = require("path");
 var uiConfig = require('./ui.config.js');
 
 module.exports = {
-    entry: {
-        react: 'src/react.js',
-        helloworld: 'src/testing_examples/helloworld.js',
-        table: 'src/testing_examples/table.js',
-    },
+    entry: uiConfig.entry,
     output: {
         filename: '[name].bundle.js',
         path: uiConfig.build
