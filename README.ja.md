@@ -1,6 +1,6 @@
 # Koriym.Ui
 
-[Japanese 日本語](README.ja.md)
+[English](README.md)
 
 **Koriym.Ui**はPHPプロジェクトとモダンJavaScript UI開発を統合するためのアプリケーションフレームワークアグノスティックなボイラープレートです。アセット/JSのコンパイル、テスト、リント、ブラウザシンクなどを可能にします。
 
