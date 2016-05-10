@@ -1,5 +1,7 @@
 # Koriym.Ui
 
+[Japanese 日本語](README.ja.md)
+
 ## Integrating React UI into PHP app
 
  * [React](https://facebook.github.io/react/) UI framework
