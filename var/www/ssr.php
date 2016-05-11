@@ -36,6 +36,7 @@ $rjs->setComponent('Table', $data);
 <div id="page"><?php echo $rjs->getMarkup(); ?></div>
 
 <!-- load react and app code -->
+<script src="build/react.bundle.js"></script>
 <script src="build/table.bundle.js"></script>
 
 <script>
