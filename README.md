@@ -131,7 +131,7 @@ It runs [ESLint](http://eslint.org/). [Airbnb](http://mitsuruog.github.io/javasc
 ## Demo
 
 You can use this repository to try commands and the operation of `v8js`.
-This repository contains the official `react-php-v8js` demo [example](https://github.com/reactjs/react-php-v8js/tree/master/example) which rewritten as ES6 + Airbnb style.
+It contains the official `react-php-v8js` demo [example](https://github.com/reactjs/react-php-v8js/tree/master/example) which rewritten as ES6 + Airbnb style.
 
 ```
 npm install
