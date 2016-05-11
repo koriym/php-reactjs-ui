@@ -72,7 +72,7 @@ composer require reactjs/react-php-v8js
 
 ## 設定
 
-アプリケーションディレクトリのの設定を`ui/ui.config.js`で行います。
+アプリケーションディレクトリの設定を`ui/ui.config.js`で行います。
 
 **ui/ui.config.js**
 
