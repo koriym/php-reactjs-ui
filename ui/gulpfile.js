@@ -9,11 +9,11 @@ var path = require('path');
 var projectRoot = path.join(__dirname, '../');
 var fileExists = require('file-exists');
 var phpcs = require('gulp-phpcs');
-var gutil = require('gulp-util');
+var phpmd = require('gulp-phpmd-plugin');
+var del = require('del');
 
-gulp.task('clean', function (cb) {
-    rimraf(uiConfig.cleanup_dir, cb);
-});
+
+gulp.task('clean', del.bind(null, uiConfig.cleanup_dir, {force: true}));
 
 gulp.task('webpack', function () {
     gulp.src('./src/**')
@@ -64,7 +64,7 @@ gulp.task('watch-ui', function () {
 gulp.task('watch-php', function () {
     gulp.watch([
         '../src/**/*.php'
-    ], ['clean']);
+    ], ['clean', 'phpcs', 'phpmd']);
 });
 
 gulp.task('phpcs', function () {
@@ -77,6 +77,17 @@ gulp.task('phpcs', function () {
             colors: true
         }))
         .pipe(phpcs.reporter('log'));
+});
+
+gulp.task('phpmd', function () {
+    var ruleset = fileExists(projectRoot + '/phpmd.xml') ? projectRoot + '/phpmd.xml' : 'unusedcode';
+    return gulp.src(projectRoot + '/src/**/*.php')
+        .pipe(phpmd({
+            bin: projectRoot + 'vendor/bin/phpmd',
+            format: 'text',
+            ruleset: ruleset
+        }))
+        .pipe(phpmd.reporter('log'));
 });
 
 // start web server
