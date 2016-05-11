@@ -5,7 +5,11 @@ var webpack = require('gulp-webpack');
 var webpackConfig = require('./webpack.config.js');
 var rimraf = require('rimraf');
 var uiConfig = require('./ui.config.js');
-
+var path = require('path');
+var projectRoot = path.join(__dirname, '../');
+var fileExists = require('file-exists');
+var phpcs = require('gulp-phpcs');
+var gutil = require('gulp-util');
 
 gulp.task('clean', function (cb) {
     rimraf(uiConfig.cleanup_dir, cb);
@@ -61,6 +65,18 @@ gulp.task('watch-php', function () {
     gulp.watch([
         '../src/**/*.php'
     ], ['clean']);
+});
+
+gulp.task('phpcs', function () {
+    var standard = fileExists(projectRoot + '/phpcs.xml') ? projectRoot + '/phpcs.xml' : 'psr2';
+    return gulp.src(projectRoot + '/src/**/*.php')
+        .pipe(phpcs({
+            bin: projectRoot + '/vendor/bin/phpcs',
+            standard: standard,
+            warningSeverity: 0,
+            colors: true
+        }))
+        .pipe(phpcs.reporter('log'));
 });
 
 // start web server

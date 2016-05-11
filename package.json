@@ -13,7 +13,9 @@
     "start": "npm run build && gulp --gulpfile ui/gulpfile.js start",
     "start-hot": "gulp --gulpfile ui/gulpfile.js start-hot",
     "test": "$(npm bin)/karma start ui/karma.conf.js",
-    "lint": "$(npm bin)/eslint ui/src; exit 0;"
+    "lint": "$(npm bin)/eslint ui/src; exit 0;",
+    "php:cs": "gulp --gulpfile ui/gulpfile.js phpcs",
+    "php:md": "gulp --gulpfile ui/gulpfile.js phpmd"
   },
   "author": "Akihito Koriyama",
   "peerDependencies": {
@@ -39,12 +41,14 @@
     "eslint-plugin-jsx-a11y": "^1.0.2",
     "eslint-plugin-react": "^5.0.1",
     "extract-text-webpack-plugin": "^1.0.1",
+    "file-exists": "^1.0.0",
     "file-loader": "^0.8.5",
     "firebase": "^2.4.2",
     "font-awesome": "^4.5.0",
     "font-awesome-webpack": "0.0.4",
     "gulp": "^3.9.1",
     "gulp-connect-php": "0.0.7",
+    "gulp-phpcs": "^1.1.1",
     "gulp-webpack": "^1.5.0",
     "hogan.js": "^3.0.2",
     "imports-loader": "^0.6.5",
