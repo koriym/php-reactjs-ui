@@ -1,9 +1,8 @@
-# Koriym.Ui
+# php-react-ui
 
 [Japanese 日本語](README.ja.md)
 
-**Koriym.Ui** is a framework agnostic boilerplate for integrating the modern JavaScript UI development into any PHP projects.
-The compilation of the assets/JS, test, lint and browser sync are available in this boilerplate.
+**php-react-ui** is a framework agnostic React UI boilerplate for PHP projects. The compilation of the assets/JS, test, lint and browser sync are available in this boilerplate.
 
  * [React](https://facebook.github.io/react/) UI framework
  * [Gulp](http://gulpjs.com/) Build system

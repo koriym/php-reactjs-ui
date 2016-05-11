@@ -1,8 +1,8 @@
-# Koriym.Ui
+# php-react-ui
 
 [English](README.md)
 
-**Koriym.Ui**はPHPプロジェクトとモダンJavaScript UI開発を統合するためのアプリケーションフレームワークアグノスティックなボイラープレートです。アセット/JSのコンパイル、テスト、リント、ブラウザシンクなどを可能にします。
+**php-react-ui**はPHPプロジェクトのためのアプリケーションフレームワークアグノスティックなReact UIボイラープレートです。アセット/JSのコンパイル、テスト、リント、ブラウザシンクなどを可能にします。
 
  * [React](https://facebook.github.io/react/) UI framework
  * [Gulp](http://gulpjs.com/) Build system
@@ -72,7 +72,7 @@ composer require reactjs/react-php-v8js
 
 ## 設定
 
-アプリケーションディレクトリの設定を`ui/ui.config.js`で行います。
+アプリケーションディレクトリのの設定を`ui/ui.config.js`で行います。
 
 **ui/ui.config.js**
 
@@ -120,7 +120,7 @@ JSのテストをKarma+Mocha+Chaiで実行、監視します。設定を変更�
 npm run lint
 ```
 
-[ESLint](http://eslint.org/)を実行します。デフォルトのルールは[Airbnb](http://mitsuruog.github.io/javascript-style-guide/)です。変更するには`.eslintrc`を編集します。
+[Eslint](http://eslint.org/)を実行します。デフォルトのルールは[Airbnb](http://mitsuruog.github.io/javascript-style-guide/)です。変更するには`.eslintrc`を編集します。
 
 
 ## デモ
