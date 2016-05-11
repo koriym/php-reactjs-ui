@@ -2,7 +2,7 @@
 
 [English](README.md)
 
-**php-react-ui**はPHPプロジェクトのためのアプリケーションフレームワークアグノスティックなReact UIボイラープレートです。アセット/JSのコンパイル、テスト、リント、ブラウザシンクなどを可能にします。
+**php-react-ui**はPHPプロジェクトとReact UIを統合するためのアプリケーションフレームワークアグノスティックなボイラープレートです。アセット/JSのコンパイル、テスト、リント、ブラウザシンクなどが出来ます。
 
  * [React](https://facebook.github.io/react/) UI framework
  * [Gulp](http://gulpjs.com/) Build system
