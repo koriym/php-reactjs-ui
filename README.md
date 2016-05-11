@@ -2,9 +2,11 @@
 
 [Japanese 日本語](README.ja.md)
 
-## Integrating React UI into PHP app
+**Koriym.Ui** is a framework agnostic boilerplate for integrating the modern JavaScript UI development into any PHP projects.
+The compilation of the assets/JS, test, lint and browser sync are available in this boilerplate.
 
  * [React](https://facebook.github.io/react/) UI framework
+ * [Gulp](http://gulpjs.com/) Build system
  * [Webpack](https://webpack.github.io/) Moudle bundler
  * [Babel](https://babeljs.io/) JS transpiler
  * [Karma](https://karma-runner.github.io/0.13/index.html) Test Runner
@@ -16,32 +18,129 @@
  * [react-php-v8js](https://github.com/reactjs/react-php-v8js) PHP library that renders React components on the server
 
  
-## Start
+## Prerequisite
+
+ * [Node](https://nodejs.org/en/)
+ * [V8Js PHP extension](https://github.com/phpv8/v8js) (Optional)
+ 
+## Installation
+
+First, place the `ui` directory and `package.json` into the root of the existing PHP project.
 
 ```
+cp -r ui /path/to/yourapp
+cp package.json /path/to/yourapp
+```
+
+Then, install the dependencies.
+
+```
+cd /path/to/yourapp
 npm install
+```
 
-# start server
+If you are going to implement Server Side Rendering (SSR) with React, please install `react-php-v8js`.
+you will need [V8Js PHP extension](https://github.com/phpv8/v8js) as well.
+
+```
+composer require reactjs/react-php-v8js
+```
+ 
+### Directory Structure
+ 
+```
+├── src                  # php
+├── tests                # php
+├── composer.json
+├── package.json          # JS
+├── node_modules          # JS
+├── ui
+│   ├── .babelrc
+│   ├── .eslintrc
+│   ├── .babelrc
+│   ├── .babelrc
+│   ├── entry.js
+│   ├── gulpfile.js
+│   ├── karma.conf.js
+│   ├── src               # JS
+│   ├── test              # JS
+│   ├── ui.config.js
+│   └── webpack.config.js
+└── vendor
+```
+
+It's easy to be integrated into any existing PHP projects.
+
+## Config
+
+You can configure the application config in `ui/ui.config.js`.
+
+**ui/ui.config.js**
+
+ * **public** Public directory
+ * **build** JS/CSS output directory
+ * **watch\_to\_sync** Target directory for the browser sync
+ * **cleanup_dir** Directory to be cleared when you update the PHP file
+ * **server** Test server
+
+Specify the JS file on page-by-page basis in the `ui/entry.js`.
+
+```
+module.exports = {
+  react: 'src/react.js',
+  helloworld: 'src/testing_examples/helloworld.js',
+};
+```
+
+You will need the `react` entry in case for Server Side Rendering (SSR) with React.
+
+## Run
+
+```
 npm start
-
-# start php-hot-deploy
-npm run start-hot 
 ```
 
+Firstly, it erase the `cleanup_dir` directory.
+Secondly, it bundles CSS and JS by webpack, and output to `build` directory.
+Lastly, it runs built-in server specified in `server` of the `ui/ui.config.js`.
+
+
 ```
-http://127.0.0.1/        # client side rendering (CSR)
-http://127.0.0.1/ssr.php # server side rendering (SSR)
+npm run start-hot
 ```
+
+Use `start-hot` for hot-reloading. It automatically reloads when PHP, JS, and Twig templates are modified.
+
 
 ## Test
 
 ```
-# cleanup
-npm run clean
-# build
-npm run build
-# start karma
 npm test      
-# lint airbnb jscs
+```
+
+It test your JS code with Karma + Mocha + Chai. To change the config, edit `karma.conf.js` in the `ui` directory.
+
+
+```
 npm run lint
 ```
+
+It runs [Eslint](http://eslint.org/). [Airbnb](http://mitsuruog.github.io/javascript-style-guide/) 's ESLint rules is configured by default. To change the rules, edit the `.eslintrc` in the `ui` directory.
+
+
+## Demo
+
+You can use this repository to try commands and the operation of `v8js`.
+This repository contains the official `react-php-v8js` demo [example](https://github.com/reactjs/react-php-v8js/tree/master/example) which rewritten as ES6 + Airbnb style.
+
+```
+npm install
+composer install
+npm run lint
+npm test
+[^C]
+npm start
+```
+
+ * `http://127.0.0.1/`        client side rendering (CSR)
+ * `http://127.0.0.1/ssr.php` server side rendering (SSR)
