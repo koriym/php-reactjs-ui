@@ -73,7 +73,7 @@ It's easy to be integrated into any existing PHP projects.
 
 ## Config
 
-You can configure the application config in `ui/ui.config.js`.
+You can configure the application settings in `ui/ui.config.js`.
 
 **ui/ui.config.js**
 
