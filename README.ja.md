@@ -120,7 +120,7 @@ JSのテストをKarma+Mocha+Chaiで実行、監視します。設定を変更�
 npm run lint
 ```
 
-[Eslint](http://eslint.org/)を実行します。デフォルトのルールは[Airbnb](http://mitsuruog.github.io/javascript-style-guide/)です。変更するには`.eslintrc`を編集します。
+[ESLint](http://eslint.org/)を実行します。デフォルトのルールは[Airbnb](http://mitsuruog.github.io/javascript-style-guide/)です。変更するには`.eslintrc`を編集します。
 
 
 ## デモ

@@ -109,7 +109,7 @@ Lastly, it runs built-in server specified in `server` of the `ui/ui.config.js`.
 npm run start-hot
 ```
 
-Use `start-hot` for hot-reloading. It automatically reloads when PHP, JS, and Twig templates are modified.
+Use `start-hot` for hot-reloading. It automatically reloads when PHP, JS, and Twig templates are updated.
 
 
 ## Test
@@ -125,7 +125,7 @@ It test your JS code with Karma + Mocha + Chai. To change the config, edit `karm
 npm run lint
 ```
 
-It runs [Eslint](http://eslint.org/). [Airbnb](http://mitsuruog.github.io/javascript-style-guide/) 's ESLint rules is configured by default. To change the rules, edit the `.eslintrc` in the `ui` directory.
+It runs [ESLint](http://eslint.org/). [Airbnb](http://mitsuruog.github.io/javascript-style-guide/) 's ESLint rules is configured by default. To change the rules, edit the `.eslintrc` in the `ui` directory.
 
 
 ## Demo
