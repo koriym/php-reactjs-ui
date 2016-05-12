@@ -7,11 +7,11 @@ const HelloWorld = props => (
 );
 
 HelloWorld.propTypes = {
-  name: React.PropTypes.array.isRequired,
+  name: React.PropTypes.string.isRequired,
 };
 
 HelloWorld.defaultProps = {
-  name: ['Sekai'],
+  name: 'Sekai',
 };
 
 export default HelloWorld;
