@@ -34,10 +34,6 @@ module.exports = {
             {
                 test: /\.(eot|woff|woff2|ttf|svg|png|jpe?g|gif)(\?\S*)?$/,
                 loader: 'url?size=8192&limit=100000&name=[name].[ext]'
-            },
-            {
-                test: /\.html/,
-                loader: 'mustache?minify'
             }
         ]
     },
