@@ -121,6 +121,10 @@ npm run lint
 
 [Eslint](http://eslint.org/)を実行します。デフォルトのルールは[Airbnb](http://mitsuruog.github.io/javascript-style-guide/)です。変更するには`.eslintrc`を編集します。
 
+```
+npm run php
+```
+[phpcs](https://github.com/squizlabs/PHP_CodeSniffer)と[phpmd](https://phpmd.org/)の監視を行います。
 
 ## デモ
 

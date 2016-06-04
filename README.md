@@ -108,6 +108,10 @@ npm run dev
 
 Use `start-hot` for hot-reloading. It automatically reloads when PHP, JS, and Twig templates are updated.
 
+```
+npm run php
+```
+Watch [phpcs](https://github.com/squizlabs/PHP_CodeSniffer) and [phpmd](https://phpmd.org/) for PHP files.
 
 ## Test
 
