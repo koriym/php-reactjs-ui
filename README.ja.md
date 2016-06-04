@@ -80,9 +80,8 @@ composer require reactjs/react-php-v8js
  * **build** JS/CSS出力ディレクトリ
  * **watch\_to\_sync** ブラウザシンクをする対象ディレクトリ
  * **cleanup_dir** PHPファイルを更新した時にクリアするディレクトリ
- * **server** テストサーバー
 
-`ui/entry.js`にはページ単位でJSのファイルを指定します。
+`ui/entry.js`にはページ単位でJSのファイルを指定します。バンドルされたJS/CSSファイルは`public/dist`に出力されます。
 
 ```
 module.exports = {

@@ -77,12 +77,10 @@ You can configure the application settings in `ui/ui.config.js`.
 **ui/ui.config.js**
 
  * **public** Public directory
- * **build** JS/CSS output directory
  * **watch\_to\_sync** Target directory for the browser sync
  * **cleanup_dir** Directory to be cleared when you update the PHP file
- * **server** Test server
 
-Specify the JS file on page-by-page basis in the `ui/entry.js`.
+Specify the JS file on page-by-page basis in the `ui/entry.js`. Bundled js/css file is output in `public/dist` path.
 
 ```
 module.exports = {
@@ -105,7 +103,7 @@ Lastly, it runs built-in server specified in `server` of the `ui/ui.config.js`.
 
 
 ```
-npm run start-hot
+npm run dev
 ```
 
 Use `start-hot` for hot-reloading. It automatically reloads when PHP, JS, and Twig templates are updated.
