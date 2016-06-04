@@ -4,7 +4,7 @@ var entry = require('./entry.js');
 
 module.exports = {
   public: base + 'var/www',
-  build: base +  'var/www/build',
+  build: base + 'var/www/dist',
   watch_to_sync: [
     base + 'var/www/build/*',
     base + 'src/**/*.twig',

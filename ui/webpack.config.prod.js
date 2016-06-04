@@ -1,15 +1,14 @@
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var path = require("path");
 var uiConfig = require('./ui.config.js');
+var webpack = require('webpack');
 
 module.exports = {
   entry: uiConfig.entry,
   output: {
     filename: '[name].bundle.js',
     path: uiConfig.build,
-    publicPath: "/dist/"
   },
-  devtool: 'inline-source-map',
   module: {
     preLoaders: [
       {
@@ -34,11 +33,11 @@ module.exports = {
       },
       {
         test: /\.(eot|woff|woff2|ttf|svg|png|jpe?g|gif)(\?\S*)?$/,
-        loader: 'url'
+        loader: 'url?size=8192&limit=100000&name=[name].[ext]'
       },
       {
         test: /\.html/,
-        loader: 'mustache'
+        loader: 'mustache?minify'
       }
     ]
   },
@@ -49,6 +48,9 @@ module.exports = {
   plugins: [
     new ExtractTextPlugin("style.css", {
       allChunks: true
+    }),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': '"production"'
     })
   ],
   externals: {

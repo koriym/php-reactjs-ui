@@ -8,15 +8,13 @@
   },
   "main": "webpack.config.js",
   "scripts": {
-    "clean": "$(npm bin)/rimraf var/www/build && mkdir var/www/build",
-    "build": "npm run clean && $(npm bin)/webpack -p --progress --config ui/webpack.config.js",
-    "start": "npm run build && gulp --gulpfile ui/gulpfile.js start",
-    "start-hot": "gulp --gulpfile ui/gulpfile.js start-hot",
+    "start": "gulp --gulpfile ui/gulpfile.js start",
+    "dev": "gulp --gulpfile ui/gulpfile.js dev",
+    "clean": "$(npm bin)/rimraf var/www/dist && mkdir var/www/dist",
+    "build": "npm run clean && BABEL_ENV=production $(npm bin)/webpack -p --progress --config ui/webpack.config.prod.js",
     "test": "$(npm bin)/karma start ui/karma.conf.js",
     "lint": "$(npm bin)/eslint ui/src; exit 0;",
-    "php": "npm run phpcs; npm run phpmd",
-    "phpcs": "gulp --gulpfile ui/gulpfile.js phpcs",
-    "phpmd": "gulp --gulpfile ui/gulpfile.js phpmd"
+    "php": "gulp --gulpfile ui/gulpfile.js watch-php"
   },
   "peerDependencies": {
     "react": ">=15.0.2",
@@ -81,5 +79,8 @@
     "webpack": "^1.13.0",
     "webpack-stream": "^3.2.0"
   },
-  "private": true
+  "private": true,
+  "dependencies": {
+    "webpack-hot-middleware": "^2.10.0"
+  }
 }
