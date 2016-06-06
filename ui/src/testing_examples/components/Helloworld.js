@@ -1,17 +1,18 @@
 import React from 'react';
 
-const HelloWorld = props => (
-  <div>
-    Hello {props.name} !
-  </div>
-);
+class Helloworld extends React.Component {
+  getName() {
+    // Play with it...
+    return 'Wrold';
+  }
+  render() {
+    const name = this.getName();
+    return (
+      <h2>
+        <span >Hello, {name}</span>
+      </h2>
+    );
+  }
+}
 
-HelloWorld.propTypes = {
-  name: React.PropTypes.string.isRequired,
-};
-
-HelloWorld.defaultProps = {
-  name: 'Sekai',
-};
-
-export default HelloWorld;
+export default Helloworld;
