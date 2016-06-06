@@ -15,6 +15,7 @@
  * [Eslint](http://eslint.org/) Linting utility for JS and JSX
  * [Phantomjs](http://phantomjs.org/) Scriptable Headless WebKit
  * [react-php-v8js](https://github.com/reactjs/react-php-v8js) PHP library that renders React components on the server
+ * [react-hot-loader](https://github.com/gaearon/react-hot-loader) Tweak React components in real time
 
  
 ## Prerequisite
