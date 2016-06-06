@@ -6,6 +6,6 @@
 
 <body>
     <div id="Page"></div>
-    <script src="build/helloworld.bundle.js"></script>
+    <script src="dist/helloworld.bundle.js"></script>
 </body>
 </html>
