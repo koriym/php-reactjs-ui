@@ -33,7 +33,7 @@ gulp.task('reload-php', ['clean'], function () {
   browserSync.reload();
 });
 
-gulp.task('php', ['webpack'], function () {
+gulp.task('php', function () {
   return connect.server({
     port: 8080,
     base: uiConfig.public
@@ -66,8 +66,7 @@ gulp.task('browser-sync', ['php'], function () {
     // including full page reloads if HMR won't work
     files: [
       './src/**/*.css',
-      './src/**/*.html',
-      './*.js'
+      './src/**/*.html'
     ]
   });
 });
@@ -123,4 +122,4 @@ gulp.task('phpmd', function () {
 // start web server
 gulp.task('start', ['webpack', 'php', 'watch-php']);
 // start web server with hot deploy
-gulp.task('dev', ['webpack', 'php', 'browser-sync', 'watch-ui', 'watch-reload']);
+gulp.task('dev', ['browser-sync']);
