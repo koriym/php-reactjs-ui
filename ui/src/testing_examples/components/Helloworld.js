@@ -3,7 +3,7 @@ import React from 'react';
 class Helloworld extends React.Component {
   getName() {
     // Play with it...
-    return 'Wrold';
+    return 'World';
   }
   render() {
     const name = this.getName();
