@@ -4,9 +4,9 @@ require __DIR__ . '/../../vendor/autoload.php';
 
 $rjs = new ReactJS(
     // location of React's code
-    file_get_contents('build/react.bundle.js'),
+    file_get_contents('dist/react.bundle.js'),
     // app code
-    file_get_contents('build/table.bundle.js')
+    file_get_contents('dist/table.bundle.js')
 );
 
 // data to be passed to the component
@@ -36,8 +36,8 @@ $rjs->setComponent('Table', $data);
 <div id="page"><?php echo $rjs->getMarkup(); ?></div>
 
 <!-- load react and app code -->
-<script src="build/react.bundle.js"></script>
-<script src="build/table.bundle.js"></script>
+<script src="dist/react.bundle.js"></script>
+<script src="dist/table.bundle.js"></script>
 
 <script>
     // client init/render
