@@ -33,7 +33,7 @@ $rjs->setComponent('Table', $data);
 <body>
 
 <!-- render server content here -->
-<div id="page"><?php echo $rjs->getMarkup(); ?></div>
+<div id="root"><?php echo $rjs->getMarkup(); ?></div>
 
 <!-- load react and app code -->
 <script src="build/react.bundle.js"></script>
@@ -45,7 +45,7 @@ $rjs->setComponent('Table', $data);
     // were loaded synchronously
     // You may want to load JS async and wrap the return of getJS()
     // in a function you can call later
-    <?php echo $rjs->getJS('#page', 'GLOB'); ?>
+    <?php echo $rjs->getJS('#root', 'GLOB'); ?>
 </script>
 </body>
 </html>
