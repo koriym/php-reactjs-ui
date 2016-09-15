@@ -4,7 +4,7 @@ import React from 'react';
 
 const Table = (props) => {
   const rows = props.data.map((row, i) => {
-    let cells = row.map((cell, j) => (
+    const cells = row.map((cell, j) => (
       <td key={j}>{cell}</td>
     ));
 

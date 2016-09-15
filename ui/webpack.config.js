@@ -20,7 +20,7 @@ module.exports = {
     ],
     loaders: [
       {
-        test: /\.(js)$/,
+        test: /\.(jsx)$/,
         loader: 'babel',
         exclude: /(node_modules)/
       },
@@ -44,7 +44,7 @@ module.exports = {
   },
   resolve: {
     modulesDirectories: [__dirname + '/../node_modules', __dirname],
-    extensions: ["", ".webpack-loader.js", ".web-loader.js", ".loader.js", ".js"]
+    extensions: ["", ".webpack-loader.js", ".web-loader.js", ".loader.js", ".js", ".jsx"]
   },
   plugins: [
     new ExtractTextPlugin("style.css", {
