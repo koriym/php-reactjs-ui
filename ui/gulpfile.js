@@ -21,8 +21,7 @@ gulp.task('clean', del.bind(null, uiConfig.cleanup_dir, {force: true}));
 gulp.task('webpack', function () {
   return gulp.src('./src/**')
     .pipe(webpack(webpackConfig))
-    .pipe(gulp.dest(uiConfig.public + '/build'))
-    .pipe(gulp.dest(uiConfig.public + '/dist'));
+    .pipe(gulp.dest(uiConfig.public + '/build'));
 });
 
 gulp.task('reload', function () {

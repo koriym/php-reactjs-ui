@@ -7,7 +7,7 @@ module.exports = {
   output: {
     filename: '[name].bundle.js',
     path: uiConfig.build,
-    publicPath: "/dist/"
+    publicPath: "/build/"
   },
   devtool: 'inline-source-map',
   module: {
