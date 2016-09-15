@@ -1,6 +1,5 @@
 var path = require("path");
 var base = path.join(__dirname, '../');
-var entry = require('./entry.js');
 
 module.exports = {
   public: base + 'var/www',
@@ -14,5 +13,9 @@ module.exports = {
     base + 'var/tmp/*',
   ],
   server: '127.0.0.1:8080',
-  entry: entry
+  entry: {
+    react: 'src/react.js',
+    helloworld: 'src/testing_examples/helloworld.jsx',
+    ssr: 'src/testing_examples/ssr.js',
+  }
 };

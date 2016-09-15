@@ -58,7 +58,6 @@ composer require reactjs/react-php-v8js
 │   ├── .eslintrc
 │   ├── .babelrc
 │   ├── .babelrc
-│   ├── entry.js
 │   ├── gulpfile.js
 │   ├── karma.conf.js
 │   ├── src               # JS
@@ -80,7 +79,7 @@ You can configure the application settings in `ui/ui.config.js`.
  * **watch\_to\_sync** Target directory for the browser sync
  * **cleanup_dir** Directory to be cleared when you update the PHP file
 
-Specify the JS file on page-by-page basis in the `ui/entry.js`. Bundled js/css file is output in `public/dist` path.
+Specify the JS file on page-by-page basis in the `entry` section in `ui/ui.config.js`. Bundled js/css file is output in `public/dist` path.
 
 ```
 module.exports = {
