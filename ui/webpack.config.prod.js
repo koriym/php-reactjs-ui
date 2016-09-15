@@ -13,19 +13,19 @@ module.exports = {
     preLoaders: [
       {
         test: /\.js$/,
-        loader: "eslint-loader",
+        loader: "eslint",
         exclude: /node_modules/
       }
     ],
     loaders: [
       {
-        test: /\.(js)$/,
+        test: /\.(js|jsx)$/,
         loader: 'babel',
         exclude: /(node_modules)/
       },
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract("style-loader", "css-loader")
+        loader: ExtractTextPlugin.extract("style", "css")
       },
       {
         test: /\.json$/,
@@ -33,17 +33,17 @@ module.exports = {
       },
       {
         test: /\.(eot|woff|woff2|ttf|svg|png|jpe?g|gif)(\?\S*)?$/,
-        loader: 'url?size=8192&limit=100000&name=[name].[ext]'
+        loader: 'url'
       },
       {
         test: /\.html/,
-        loader: 'mustache?minify'
+        loader: 'mustache'
       }
     ]
   },
   resolve: {
     modulesDirectories: [__dirname + '/../node_modules', __dirname],
-    extensions: ["", ".webpack-loader.js", ".web-loader.js", ".loader.js", ".js"]
+    extensions: ["", ".webpack-loader.js", ".web-loader.js", ".loader.js", ".js", ".jsx"]
   },
   plugins: [
     new ExtractTextPlugin("style.css", {
