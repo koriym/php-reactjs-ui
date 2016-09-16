@@ -3,6 +3,7 @@ var base = path.join(__dirname, '../');
 
 module.exports = {
   public: base + 'var/www',
+  publicPath: 'http://localhost:8080/', // CDN
   build: base + 'var/www/build',
   watch_to_sync: [
     base + 'var/www/build/*',
