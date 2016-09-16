@@ -1,12 +1,7 @@
 {
-  "name": "php-react-ui",
-  "version": "0.1.0",
+  "name": "php-reactjs-ui",
+  "version": "0.2.0",
   "description": "A framework agnostic React UI boilerplate for PHP projects",
-  "repository": {
-    "type": "git",
-    "url": ""
-  },
-  "main": "webpack.config.js",
   "scripts": {
     "start": "gulp --gulpfile ui/gulpfile.js start",
     "dev": "gulp --gulpfile ui/gulpfile.js dev",
@@ -15,7 +10,24 @@
     "lint": "$(npm bin)/eslint ui/src --ignore-pattern *-compiled.js; exit 0;",
     "php": "gulp --gulpfile ui/gulpfile.js watch-php"
   },
-  "peerDependencies": {
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/koriym/php-reactjs-ui.git"
+  },
+  "keywords": [
+    "reactjs",
+    "boilerplate",
+    "php",
+    "hmr",
+    "webpack"
+  ],
+  "author": "Akihito Koriyama <akihito.koriyama> (http://github.com/koriym)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/koriym/php-reactjs-ui/issues"
+  },
+  "homepage": "https://github.com/koriym/php-reactjs-ui",
+  "dependencies": {
     "react": ">=15.0.2",
     "react-dom": ">=15.0.2"
   },
@@ -80,10 +92,7 @@
     "url-loader": "^0.5.7",
     "webpack": "^1.13.0",
     "webpack-dev-middleware": "^1.7.0",
+    "webpack-hot-middleware": "^2.10.0",
     "webpack-stream": "^3.2.0"
-  },
-  "private": true,
-  "dependencies": {
-    "webpack-hot-middleware": "^2.10.0"
   }
 }
