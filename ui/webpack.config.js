@@ -6,7 +6,7 @@ module.exports = {
   entry: uiConfig.entry,
   output: {
     filename: '[name].bundle.js',
-    path: uiConfig.build,
+    path: uiConfig.path,
     publicPath: uiConfig.publicPath,
   },
   devtool: 'inline-source-map',

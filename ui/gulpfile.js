@@ -16,12 +16,12 @@ var bundler = w(webpackConfig);
 var webpackDevMiddleware = require('webpack-dev-middleware');
 var webpackHotMiddleware = require('webpack-hot-middleware');
 
-gulp.task('clean', del.bind(null, uiConfig.cleanup_dir, {force: true}));
+gulp.task('clean', del.bind(null, uiConfig.path, {force: true}));
 
 gulp.task('webpack', function () {
   return gulp.src('./src/**')
     .pipe(webpack(webpackConfig))
-    .pipe(gulp.dest(uiConfig.build));
+    .pipe(gulp.dest(uiConfig.path));
 });
 
 gulp.task('reload', function () {
@@ -35,7 +35,7 @@ gulp.task('reload-php', ['clean'], function () {
 gulp.task('php', ['webpack'], function () {
   return connect.server({
     port: 8080,
-    base: uiConfig.public
+    base: uiConfig.htdocs
   })
 });
 
@@ -73,7 +73,7 @@ gulp.task('browser-sync', ['php'], function () {
 
 gulp.task('watch-reload', ['browser-sync'], function () {
   gulp.watch(
-    uiConfig.watch_to_sync,
+    uiConfig.watch,
     ['reload']
   );
   gulp.watch(
