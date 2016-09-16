@@ -1,18 +1,22 @@
 var path = require("path");
 var base = path.join(__dirname, '../');
-var entry = require('./entry.js');
 
 module.exports = {
-  public: base + 'var/www',
-  build: base + 'var/www/dist',
-  watch_to_sync: [
+  // web root
+  htdocs: base + 'var/www',
+  // webpack output.path
+  path: base + 'var/www/build',
+  // webpack outout.publicPath
+  publicPath: "http://cdn.example.com/assets/[hash]/",
+  // watch to sync folder
+  watch: [
     base + 'var/www/build/*',
-    base + 'src/**/*.twig',
-    base + 'var/lib/twig/*.twig',
+    base + '**/*.twig',
   ],
-  cleanup_dir: [
-    base + 'var/tmp/*',
-  ],
-  server: '127.0.0.1:8080',
-  entry: entry
+  // webpack entry
+  entry: {
+    react: 'src/react.js',
+    helloworld: 'src/testing_examples/helloworld.jsx',
+    ssr: 'src/testing_examples/ssr.js',
+  }
 };
