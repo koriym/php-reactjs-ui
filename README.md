@@ -72,7 +72,7 @@ It's easy to be integrated into any existing PHP projects.
 
 You can configure with `ui/ui.config.js`.
 
-```
+```javascript
 module.exports = {
   // web root
   htdocs: base + 'var/www',

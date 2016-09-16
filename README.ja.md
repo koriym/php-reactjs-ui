@@ -75,7 +75,7 @@ composer require reactjs/react-php-v8js
 
 設定を`ui/ui.config.js`で設定します。
 
-```
+```javascript
 module.exports = {
   // web root
   htdocs: base + 'var/www',
