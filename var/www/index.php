@@ -1,7 +1,7 @@
 <!doctype>
 <html>
 <head>
-    <title>React client-side rendering (CSR)</title>
+    <title>CSR</title>
 </head>
 
 <body>

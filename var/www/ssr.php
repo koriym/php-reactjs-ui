@@ -20,7 +20,7 @@ $rjs->setComponent('HelloWorld', $data);
 <!doctype>
 <html>
 <head>
-    <title>React server-side rendering (SSR)</title>
+    <title>SSR</title>
     <!-- css and stuff -->
 </head>
 <body>
