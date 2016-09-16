@@ -1,8 +1,8 @@
-# php-react-ui
+# php-reactjs-ui
 
 [English](README.md)
 
-**php-react-ui**はPHPプロジェクトとReact UIを統合するためのアプリケーションフレームワークアグノスティックなボイラープレートです。アセット/JSのコンパイル、テスト、リント、ブラウザシンクなどが出来ます。
+**php-reactjs-ui**はPHPプロジェクトとReactJS UIを統合するためのアプリケーションフレームワークアグノスティックなボイラープレートです。
 
  * [React](https://facebook.github.io/react/) UI framework
  * [Gulp](http://gulpjs.com/) Build system
@@ -72,39 +72,46 @@ composer require reactjs/react-php-v8js
 
 ## 設定
 
-アプリケーションディレクトリのの設定を`ui/ui.config.js`で行います。
-
-**ui/ui.config.js**
-
- * **public** 公開ディレクトリ
- * **build** JS/CSS出力ディレクトリ
- * **watch\_to\_sync** ブラウザシンクをする対象ディレクトリ
- * **cleanup_dir** PHPファイルを更新した時にクリアするディレクトリ
-
-`ui/entry.js`にはページ単位でJSのファイルを指定します。バンドルされたJS/CSSファイルは`public/dist`に出力されます。
+設定を`ui/ui.config.js`で設定します。
 
 ```
 module.exports = {
-  react: 'src/react.js',
-  helloworld: 'src/testing_examples/helloworld.js',
+  // web root
+  htdocs: base + 'var/www',
+  // webpack output.path
+  path: base + 'var/www/build',
+  // webpack outout.publicPath
+  publicPath: "http://cdn.example.com/assets/[hash]/",
+  // watch to sync folder
+  watch: [
+    base + 'var/www/build/*',
+    base + '**/*.twig',
+  ],
+  // webpack entry
+  entry: {
+    react: 'src/react.js',
+    helloworld: 'src/testing_examples/helloworld.jsx',
+    ssr: 'src/testing_examples/ssr.js',
+  }
 };
 ```
 
-ReactでSSRを行うためには最初の`react`のエントリーが必要です。
+## 起動
 
-## 実行
+http://127.0.0.0:8080/ で起動します。
 
 ```
 npm start
 ```
 
-アプリケーションの`cleanup_dir`ディレクトリを消去し、cssやjsをwebpackでバンドルして`build`フォルダに出力し`server`で指定したビルトインサーバーを実行します。
+## Browsersync + HMR
+
+PHPやJS、Twigのテンプレートファイル等が更新された時にブラウザを自動で再読みます。
 
 ```
-npm run start-hot
+npm run dev
 ```
-
-PHPやJS、Twigのテンプレートファイル等が更新された時にブラウザを自動で再読み込みさせるためには`start-hot`コマンドで使用します。
+込みさせるためには`start-hot`コマンドで使用します。
 
 
 ## テスト
@@ -113,22 +120,25 @@ PHPやJS、Twigのテンプレートファイル等が更新された時にブ�
 npm test      
 ```
 
-JSのテストをKarma+Mocha+Chaiで実行、監視します。設定を変更するには`karma.conf.js`を編集します。
+JSのテストを`Karma`+`Mocha`+`Chai`で実行監視します。`karma.conf.js`で設定します。
+
+## リント
 
 ```
 npm run lint
 ```
 
-[Eslint](http://eslint.org/)を実行します。デフォルトのルールは[Airbnb](http://mitsuruog.github.io/javascript-style-guide/)です。変更するには`.eslintrc`を編集します。
+[Eslint](http://eslint.org/)を実行します。ルールは[Airbnb](http://mitsuruog.github.io/javascript-style-guide/)です。変更するには`.eslintrc`を編集します。
+
+## PHP QA
+
+[phpcs](https://github.com/squizlabs/PHP_CodeSniffer)と[phpmd](https://phpmd.org/)の監視を行います。
 
 ```
 npm run php
 ```
-[phpcs](https://github.com/squizlabs/PHP_CodeSniffer)と[phpmd](https://phpmd.org/)の監視を行います。
 
 ## デモ
-
-このリポジトリをそのまま使いコマンドの実行や`v8js`の動作確認をすることができます。デモコードは公式の[example](https://github.com/reactjs/react-php-v8js/tree/master/example)をes6+Airbnbスタイルで書き直しています。
 
 ```
 npm install

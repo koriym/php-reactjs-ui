@@ -1,8 +1,8 @@
-# php-react-ui
+# php-reactjs-ui
 
 [Japanese 日本語](README.ja.md)
 
-**php-react-ui** is a framework agnostic React UI boilerplate for PHP projects. The compilation of the assets/JS, test, lint and browser sync are available in this boilerplate.
+**php-reactjs-ui** is a framework agnostic React UI boilerplate for PHP projects. The compilation of the assets/JS, test, lint and browser sync are available in this boilerplate.
 
  * [React](https://facebook.github.io/react/) UI framework
  * [Gulp](http://gulpjs.com/) Build system
@@ -20,7 +20,7 @@
 ## Prerequisite
 
  * [Node](https://nodejs.org/en/)
- * [V8Js PHP extension](https://github.com/phpv8/v8js) (Optional)
+ * [V8Js PHP extension](https://github.com/phpv8/v8js) (Optional for SSR)
  
 ## Installation
 
@@ -38,8 +38,7 @@ cd /path/to/yourapp
 npm install
 ```
 
-If you are going to implement Server Side Rendering (SSR) with React, please install `react-php-v8js`.
-you will need [V8Js PHP extension](https://github.com/phpv8/v8js) as well.
+If you want SSR(Server Side Rendering), Install `react-php-v8js`.
 
 ```
 composer require reactjs/react-php-v8js
@@ -71,61 +70,74 @@ It's easy to be integrated into any existing PHP projects.
 
 ## Config
 
-You can configure the application settings in `ui/ui.config.js`.
-
-**ui/ui.config.js**
-
- * **public** Public directory
- * **watch\_to\_sync** Target directory for the browser sync
- * **cleanup_dir** Directory to be cleared when you update the PHP file
-
-Specify the JS file on page-by-page basis in the `entry` section in `ui/ui.config.js`. Bundled js/css file is output in `public/dist` path.
+You can configure with `ui/ui.config.js`.
 
 ```
 module.exports = {
-  react: 'src/react.js',
-  helloworld: 'src/testing_examples/helloworld.js',
+  // web root
+  htdocs: base + 'var/www',
+  // webpack output.path
+  path: base + 'var/www/build',
+  // webpack outout.publicPath
+  publicPath: "http://cdn.example.com/assets/[hash]/",
+  // watch to sync folder
+  watch: [
+    base + 'var/www/build/*',
+    base + '**/*.twig',
+  ],
+  // webpack entry
+  entry: {
+    react: 'src/react.js',
+    helloworld: 'src/testing_examples/helloworld.jsx',
+    ssr: 'src/testing_examples/ssr.js',
+  }
 };
 ```
 
-You will need the `react` entry in case for Server Side Rendering (SSR) with React.
+**Important:** You need the `react` entry in case for SSR.
 
 ## Run
+
+A server start with http://127.0.0.1:8080/
 
 ```
 npm start
 ```
 
-Firstly, it erase the `cleanup_dir` directory.
-Secondly, it bundles CSS and JS by webpack, and output to `build` directory.
-Lastly, it runs built-in server specified in `server` of the `ui/ui.config.js`.
 
+## Browsersync + HMR
+
+It automatically reloads when PHP, JS, and Twig templates are updated.
 
 ```
 npm run dev
 ```
 
-Use `start-hot` for hot-reloading. It automatically reloads when PHP, JS, and Twig templates are updated.
-
-```
-npm run php
-```
-Watch [phpcs](https://github.com/squizlabs/PHP_CodeSniffer) and [phpmd](https://phpmd.org/) for PHP files.
-
 ## Test
+
+It test your JS code with Karma + Mocha + Chai. To change the config, edit `karma.conf.js` in the `ui` directory.
 
 ```
 npm test      
 ```
 
-It test your JS code with Karma + Mocha + Chai. To change the config, edit `karma.conf.js` in the `ui` directory.
-
+## Linting
 
 ```
 npm run lint
 ```
 
 It runs [ESLint](http://eslint.org/). [Airbnb](http://mitsuruog.github.io/javascript-style-guide/) 's ESLint rules is configured by default. To change the rules, edit the `.eslintrc` in the `ui` directory.
+
+
+## PHP QA
+
+Watch [phpcs](https://github.com/squizlabs/PHP_CodeSniffer) and [phpmd](https://phpmd.org/) for PHP files.
+
+```
+npm run php
+```
+
 
 
 ## Demo
