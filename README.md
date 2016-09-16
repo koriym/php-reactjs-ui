@@ -147,7 +147,8 @@ It contains the official `react-php-v8js` demo [example](https://github.com/reac
 
 ```
 npm install
-composer install
+git clone https://github.com/koriym/php-reactjs-ui.git
+cd php-reactjs-uicomposer install // optional for SSR
 npm run lint
 npm test
 [^C]

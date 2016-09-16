@@ -144,8 +144,10 @@ npm run php
 ## デモ
 
 ```
+git clone https://github.com/koriym/php-reactjs-ui.git
+cd php-reactjs-ui
 npm install
-composer install
+composer install // optional for SSR
 npm run lint
 npm test
 [^C]
