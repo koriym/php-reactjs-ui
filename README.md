@@ -146,9 +146,10 @@ You can use this repository to try commands and the operation of `v8js`.
 It contains the official `react-php-v8js` demo [example](https://github.com/reactjs/react-php-v8js/tree/master/example) which is rewritten as ES6 + Airbnb style.
 
 ```
-npm install
 git clone https://github.com/koriym/php-reactjs-ui.git
-cd php-reactjs-uicomposer install // optional for SSR
+cd php-reactjs-ui
+npm install
+composer install // optional for SSR
 npm run lint
 npm test
 [^C]
