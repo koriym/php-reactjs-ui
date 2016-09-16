@@ -10,8 +10,7 @@
   "scripts": {
     "start": "gulp --gulpfile ui/gulpfile.js start",
     "dev": "gulp --gulpfile ui/gulpfile.js dev",
-    "clean": "$(npm bin)/rimraf var/www/dist && mkdir var/www/dist",
-    "build": "npm run clean && BABEL_ENV=production $(npm bin)/webpack -p --progress --config ui/webpack.config.prod.js",
+    "build": "$(npm bin)/rimraf var/www/build && BABEL_ENV=production $(npm bin)/webpack -p --progress --config ui/webpack.config.prod.js",
     "test": "$(npm bin)/karma start ui/karma.conf.js",
     "lint": "$(npm bin)/eslint ui/src; exit 0;",
     "php": "gulp --gulpfile ui/gulpfile.js watch-php"
