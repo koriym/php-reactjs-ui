@@ -12,7 +12,7 @@
     "dev": "gulp --gulpfile ui/gulpfile.js dev",
     "build": "$(npm bin)/rimraf var/www/build && BABEL_ENV=production $(npm bin)/webpack -p --progress --config ui/webpack.config.prod.js",
     "test": "$(npm bin)/karma start ui/karma.conf.js",
-    "lint": "$(npm bin)/eslint ui/src; exit 0;",
+    "lint": "$(npm bin)/eslint ui/src --ignore-pattern *-compiled.js; exit 0;",
     "php": "gulp --gulpfile ui/gulpfile.js watch-php"
   },
   "peerDependencies": {
