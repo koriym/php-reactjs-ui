@@ -23,15 +23,16 @@
  * [V8Js PHP extension](https://github.com/phpv8/v8js)  (オプション)
  
 ## インストール
- 
-最初に`ui`フォルダと`package.json`を既存のPHPプロジェクトのルートに設置します。
+
+このパッケージをダウンロードまたはクローンして、`ui`フォルダと`package.json`をPHPプロジェクトのルートに設置します。
 
 ```
-cp -r ui /path/to/yourapp
-cp package.json /path/to/yourapp
+git clone https://github.com/koriym/php-reactjs-ui.git
+cp -r php-reactjs-ui/ui /path/to/yourapp
+cp php-reactjs-ui/package.json /path/to/yourapp
 ```
 
-次にモジュールのインストール。
+次にモジュールをインストールします。
 
 ```
 cd /path/to/yourapp
@@ -137,6 +138,8 @@ npm run lint
 ```
 npm run php
 ```
+
+注意）監視を行う`test`や`php`は別のターミナルで開いておくといいでしょう。
 
 ## デモ
 
