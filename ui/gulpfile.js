@@ -19,6 +19,7 @@ var webpackHotMiddleware = require('webpack-hot-middleware');
 gulp.task('clean', del.bind(null, uiConfig.path, {force: true}));
 
 gulp.task('webpack', function () {
+  webpackConfig.watch = true;
   return gulp.src('./src/**')
     .pipe(webpack(webpackConfig))
     .pipe(gulp.dest(uiConfig.path));
@@ -32,7 +33,7 @@ gulp.task('reload-php', ['clean'], function () {
   browserSync.reload();
 });
 
-gulp.task('php', ['webpack'], function () {
+gulp.task('php',  function () {
   return connect.server({
     port: 8080,
     base: uiConfig.htdocs
@@ -85,9 +86,10 @@ gulp.task('watch-reload', ['browser-sync'], function () {
 gulp.task('watch-ui', ['browser-sync'], function () {
   gulp.watch([
     './src/**/*.js',
+    './src/**/*.jsx',
     './src/**/*.css',
     './*.js'
-  ], ['reload']);
+  ], ['webpack','reload']);
 });
 
 gulp.task('watch-php', ['php'], function () {
@@ -120,6 +122,6 @@ gulp.task('phpmd', function () {
 });
 
 // start web server
-gulp.task('start', ['webpack', 'php', 'watch-php']);
+gulp.task('start', ['php', 'webpack']);
 // start web server with hot deploy
 gulp.task('dev', ['webpack', 'php', 'browser-sync', 'watch-ui', 'watch-reload']);
