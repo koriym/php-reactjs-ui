@@ -16,7 +16,7 @@ var bundler = w(webpackConfig);
 var webpackDevMiddleware = require('webpack-dev-middleware');
 var webpackHotMiddleware = require('webpack-hot-middleware');
 
-gulp.task('clean', del.bind(null, uiConfig.path, {force: true}));
+gulp.task('clean', del.bind(null, uiConfig.cleanup_dir, {force: true}));
 
 gulp.task('webpack', function () {
   webpackConfig.watch = true;

@@ -13,6 +13,9 @@ module.exports = {
     base + 'var/www/build/*',
     base + '**/*.twig',
   ],
+  cleanup_dir: [
+    base + 'var/tmp/*',
+  ],
   // webpack entry
   entry: {
     react: 'src/react.js',
