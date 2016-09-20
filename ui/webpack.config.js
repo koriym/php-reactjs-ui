@@ -1,27 +1,28 @@
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var path = require("path");
 var uiConfig = require('./ui.config.js');
+var webpack = require('webpack');
 
 module.exports = {
   entry: uiConfig.entry,
   output: {
     filename: '[name].bundle.js',
     path: uiConfig.path,
-    publicPath: uiConfig.publicPath,
+    publicPath: "/dist/"
   },
-  devtool: 'inline-source-map',
+  devtool: '#eval-source-map',
   module: {
-    preLoaders: [
-      {
-        test: /\.js$/,
-        loader: "eslint",
-        exclude: /node_modules/
-      }
-    ],
+    // preLoaders: [
+    //   {
+    //     test: /\.js$/,
+    //     loader: "eslint",
+    //     exclude: /node_modules/
+    //   }
+    // ],
     loaders: [
       {
-        test: /\.(js|jsx)$/,
-        loader: 'babel',
+        test: /\.jsx?$/,
+        loaders: ['react-hot', 'babel'],
         exclude: /(node_modules)/
       },
       {
@@ -44,9 +45,11 @@ module.exports = {
   },
   resolve: {
     modulesDirectories: [__dirname + '/../node_modules', __dirname],
-    extensions: ["", ".webpack-loader.js", ".web-loader.js", ".loader.js", ".js", ".jsx"]
+    extensions: ["", ".webpack-loader.js", ".web-loader.js", ".loader.js", ".js"]
   },
   plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin(),
     new ExtractTextPlugin("style.css", {
       allChunks: true
     })

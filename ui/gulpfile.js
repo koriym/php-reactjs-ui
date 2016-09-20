@@ -19,13 +19,13 @@ var webpackHotMiddleware = require('webpack-hot-middleware');
 gulp.task('clean', del.bind(null, uiConfig.cleanup_dir, {force: true}));
 
 gulp.task('webpack', function () {
-  webpackConfig.watch = true;
   return gulp.src('./src/**')
     .pipe(webpack(webpackConfig))
-    .pipe(gulp.dest(uiConfig.path));
+    .pipe(gulp.dest(uiConfig.path))
+    .pipe(gulp.dest(uiConfig.public + '/dist'));
 });
 
-gulp.task('reload', function () {
+gulp.task('reload-php', ['clean'], function () {
   browserSync.reload();
 });
 
@@ -33,7 +33,7 @@ gulp.task('reload-php', ['clean'], function () {
   browserSync.reload();
 });
 
-gulp.task('php',  function () {
+gulp.task('php', ['webpack'], function () {
   return connect.server({
     port: 8080,
     base: uiConfig.htdocs
@@ -67,7 +67,7 @@ gulp.task('browser-sync', ['php'], function () {
     files: [
       './src/**/*.css',
       './src/**/*.html',
-      './*.js'
+      '../src/**/*.php',
     ]
   });
 });
@@ -83,19 +83,25 @@ gulp.task('watch-reload', ['browser-sync'], function () {
   );
 });
 
-gulp.task('watch-ui', ['browser-sync'], function () {
-  gulp.watch([
-    './src/**/*.js',
-    './src/**/*.jsx',
-    './src/**/*.css',
-    './*.js'
-  ], ['webpack','reload']);
+gulp.task('sync', ['browser-sync'], function () {
+  gulp.watch(
+    uiConfig.watch_to_sync,
+    ['reload']
+  );
 });
 
-gulp.task('watch-php', ['php'], function () {
-  gulp.watch([
-    '../src/**/*.php'
-  ], ['clean', 'phpcs', 'phpmd']);
+gulp.task('php-clean', ['php'], function () {
+  gulp.watch(
+    '../src/**/*.php',
+    ['clean']
+  );
+});
+
+gulp.task('php-cs', ['php'], function () {
+  gulp.watch(
+    '../src/**/*.php',
+    ['clean', 'phpcs', 'phpmd']
+  );
 });
 
 gulp.task('phpcs', function () {
@@ -122,6 +128,6 @@ gulp.task('phpmd', function () {
 });
 
 // start web server
-gulp.task('start', ['php', 'webpack']);
+gulp.task('start', ['php']);
 // start web server with hot deploy
-gulp.task('dev', ['webpack', 'php', 'browser-sync', 'watch-ui', 'watch-reload']);
+gulp.task('dev', ['sync', 'php-clean', 'php-cs']);
