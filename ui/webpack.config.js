@@ -10,7 +10,7 @@ module.exports = {
     path: uiConfig.path,
     publicPath: "/dist/"
   },
-  devtool: '#eval-source-map',
+  devtool: 'cheap-eval-source-map',
   module: {
     preLoaders: [
       {
