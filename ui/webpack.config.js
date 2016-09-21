@@ -37,10 +37,6 @@ module.exports = {
       {
         test: /\.(eot|woff|woff2|ttf|svg|png|jpe?g|gif)(\?\S*)?$/,
         loader: 'url'
-      },
-      {
-        test: /\.html/,
-        loader: 'mustache'
       }
     ]
   },
