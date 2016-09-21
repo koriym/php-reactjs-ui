@@ -15,14 +15,14 @@ var w = require('webpack');
 var bundler = w(webpackConfig);
 var webpackDevMiddleware = require('webpack-dev-middleware');
 var webpackHotMiddleware = require('webpack-hot-middleware');
+var webpackPath = uiConfig.base + uiConfig.publicPath;
 
 gulp.task('clean', del.bind(null, uiConfig.cleanup_dir, {force: true}));
 
 gulp.task('webpack', function () {
   return gulp.src('./src/**')
     .pipe(webpack(webpackConfig))
-    .pipe(gulp.dest(uiConfig.path))
-    .pipe(gulp.dest(uiConfig.public + '/dist'));
+    .pipe(gulp.dest(webpackPath));
 });
 
 gulp.task('reload-php', ['clean'], function () {
@@ -36,7 +36,7 @@ gulp.task('reload-php', ['clean'], function () {
 gulp.task('php', ['webpack'], function () {
   return connect.server({
     port: 8080,
-    base: uiConfig.htdocs
+    base: uiConfig.base
   })
 });
 

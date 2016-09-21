@@ -2,14 +2,10 @@ var path = require("path");
 var base = path.join(__dirname, '../');
 
 module.exports = {
-  // web root
-  public: base + 'var/www',
-  htdocs: base + 'var/www',
-  // webpack output.path
-  path: base + 'var/www/build',
-  // webpack outout.publicPath
-  publicPath: '/dist/',
-  // publicPath: "http://cdn.example.com/assets/[hash]/",
+  // web root (gulp-connect-php.base)
+  base: base + 'var/www',
+  // webpack.outout.publicPath
+  publicPath: '/build/',
   // watch to sync folder
   watch_to_sync: [
     base + 'src/**/*.js',
