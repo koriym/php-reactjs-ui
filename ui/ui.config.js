@@ -27,7 +27,6 @@ module.exports = {
   entry: {
     react: 'src/react.js',
     helloworld: [
-      'webpack/hot/dev-server',
       'webpack-hot-middleware/client',
       'src/testing_examples/helloworld.jsx',
     ],
