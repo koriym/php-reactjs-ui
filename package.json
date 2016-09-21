@@ -8,7 +8,7 @@
     "build": "BABEL_ENV=production $(npm bin)/webpack -p --progress --config ui/webpack.config.prod.js",
     "test": "$(npm bin)/karma start ui/karma.conf.js",
     "lint": "$(npm bin)/eslint ui/src --ignore-pattern *-compiled.js; exit 0;",
-    "php": "gulp --gulpfile ui/gulpfile.js watch-php"
+    "phpqa": "gulp --gulpfile ui/gulpfile.js phpqa"
   },
   "repository": {
     "type": "git",
