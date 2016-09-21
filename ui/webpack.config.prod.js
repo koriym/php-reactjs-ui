@@ -2,13 +2,14 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var path = require("path");
 var uiConfig = require('./ui.config.js');
 var webpack = require('webpack');
+var webpackPath = uiConfig.base + uiConfig.publicPath;
 
 module.exports = {
   entry: uiConfig.entry,
   output: {
     filename: '[name].bundle.js',
-    path: uiConfig.path,
-    publicPath: uiConfig.publicPath,
+    path: webpackPath,
+    publicPath: "http://cdn.example.com/assets/[hash]/"
   },
   module: {
     preLoaders: [
@@ -35,10 +36,6 @@ module.exports = {
       {
         test: /\.(eot|woff|woff2|ttf|svg|png|jpe?g|gif)(\?\S*)?$/,
         loader: 'url'
-      },
-      {
-        test: /\.html/,
-        loader: 'mustache'
       }
     ]
   },
