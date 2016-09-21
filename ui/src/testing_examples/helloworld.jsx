@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import HelloWorld from './components/Helloworld.js';
+import HelloWorld from './components/Helloworld.jsx';
 
 ReactDOM.render(
   <HelloWorld name="World" />,
