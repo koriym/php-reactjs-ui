@@ -1,7 +1,7 @@
 var gulp = require('gulp');
 var connect = require('gulp-connect-php');
 var browserSync = require('browser-sync').create();
-var webpack = require('webpack-stream');
+var webpackStream = require('webpack-stream');
 var webpackConfig = require('./webpack.config.js');
 var rimraf = require('rimraf');
 var uiConfig = require('./ui.config.js');
@@ -11,29 +11,26 @@ var fileExists = require('file-exists');
 var phpcs = require('gulp-phpcs');
 var phpmd = require('gulp-phpmd-plugin');
 var del = require('del');
-var w = require('webpack');
-var bundler = w(webpackConfig);
+var webpack = require('webpack');
 var webpackDevMiddleware = require('webpack-dev-middleware');
 var webpackHotMiddleware = require('webpack-hot-middleware');
+
+var bundler = webpack(webpackConfig);
 var webpackPath = uiConfig.base + uiConfig.publicPath;
 
 gulp.task('clean', del.bind(null, uiConfig.cleanup_dir, {force: true}));
 
 gulp.task('webpack', function () {
   return gulp.src('./src/**')
-    .pipe(webpack(webpackConfig))
+    .pipe(webpackStream(webpackConfig))
     .pipe(gulp.dest(webpackPath));
 });
 
-gulp.task('reload-php', ['clean'], function () {
+gulp.task('reload', ['clean'], function () {
   browserSync.reload();
 });
 
-gulp.task('reload-php', ['clean'], function () {
-  browserSync.reload();
-});
-
-gulp.task('php', ['webpack'], function () {
+gulp.task('php', ['clean', 'webpack'], function () {
   return connect.server({
     port: 8080,
     base: uiConfig.base
@@ -72,17 +69,6 @@ gulp.task('browser-sync', ['php'], function () {
   });
 });
 
-gulp.task('watch-reload', ['browser-sync'], function () {
-  gulp.watch(
-    uiConfig.watch,
-    ['reload']
-  );
-  gulp.watch(
-    '../src/**/*.php',
-    ['reload-php']
-  );
-});
-
 gulp.task('sync', ['browser-sync'], function () {
   gulp.watch(
     uiConfig.watch_to_sync,
@@ -97,7 +83,7 @@ gulp.task('php-clean', ['php'], function () {
   );
 });
 
-gulp.task('php-cs', ['php'], function () {
+gulp.task('phpqa', ['php'], function () {
   gulp.watch(
     '../src/**/*.php',
     ['clean', 'phpcs', 'phpmd']
@@ -130,4 +116,4 @@ gulp.task('phpmd', function () {
 // start web server
 gulp.task('start', ['php']);
 // start web server with hot deploy
-gulp.task('dev', ['sync', 'php-clean', 'php-cs']);
+gulp.task('dev', ['sync']);

@@ -8,13 +8,8 @@ module.exports = {
   publicPath: '/build/',
   // watch to sync folder
   watch_to_sync: [
-    base + 'src/**/*.js',
-    base + 'src/**/*.jsx',
     base + 'src/**/*.php',
-    base + 'src/**/*.twig',
-    base + 'var/lib/twig/*.twig',
-    base + 'ui/src/**/*.css',
-    base + 'ui/src/**/*.html',
+    base + 'var/www/*.php',
   ],
   cleanup_dir: [
     base + 'var/tmp/*',
