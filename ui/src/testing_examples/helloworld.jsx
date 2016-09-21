@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import HelloWorld from './components/Helloworld.jsx';
 
 ReactDOM.render(
-  <HelloWorld name="World1" />,
+  <HelloWorld name={window.appState.name} />,
   document.getElementById('root')
 );
 
