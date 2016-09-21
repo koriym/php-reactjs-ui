@@ -1,24 +1,20 @@
 var gulp = require('gulp');
 var connect = require('gulp-connect-php');
 var browserSync = require('browser-sync').create();
-var webpackStream = require('webpack-stream');
+var webpack = require('webpack');
 var webpackConfig = require('./webpack.config.js');
-var rimraf = require('rimraf');
-var uiConfig = require('./ui.config.js');
-var path = require('path');
-var projectRoot = path.join(__dirname, '../');
+var webpackDevMiddleware = require('webpack-dev-middleware');
+var webpackHotMiddleware = require('webpack-hot-middleware');
+var webpackStream = require('webpack-stream');
+var ui = require('./ui.config.js');
+var del = require('del');
 var fileExists = require('file-exists');
 var phpcs = require('gulp-phpcs');
 var phpmd = require('gulp-phpmd-plugin');
-var del = require('del');
-var webpack = require('webpack');
-var webpackDevMiddleware = require('webpack-dev-middleware');
-var webpackHotMiddleware = require('webpack-hot-middleware');
-
 var bundler = webpack(webpackConfig);
-var webpackPath = uiConfig.base + uiConfig.publicPath;
+var webpackPath = ui.publicDir + ui.publicPath;
 
-gulp.task('clean', del.bind(null, uiConfig.cleanup_dir, {force: true}));
+gulp.task('clean', del.bind(null, ui.clearDir, {force: true}));
 
 gulp.task('webpack', function () {
   return gulp.src('./src/**')
@@ -33,7 +29,7 @@ gulp.task('reload', ['clean'], function () {
 gulp.task('php', ['clean', 'webpack'], function () {
   return connect.server({
     port: 8080,
-    base: uiConfig.base
+    base: ui.publicDir
   })
 });
 
@@ -71,7 +67,7 @@ gulp.task('browser-sync', ['php'], function () {
 
 gulp.task('sync', ['browser-sync'], function () {
   gulp.watch(
-    uiConfig.watch_to_sync,
+    ui.watchDir,
     ['reload']
   );
 });
@@ -91,10 +87,10 @@ gulp.task('phpqa', ['php'], function () {
 });
 
 gulp.task('phpcs', function () {
-  var standard = fileExists(projectRoot + '/phpcs.xml') ? projectRoot + '/phpcs.xml' : 'psr2';
-  return gulp.src(projectRoot + '/src/**/*.php')
+  var standard = fileExists(ui.ProjectDir + '/phpcs.xml') ? ui.ProjectDir + '/phpcs.xml' : 'psr2';
+  return gulp.src(ui.ProjectDir + '/src/**/*.php')
     .pipe(phpcs({
-      bin: projectRoot + '/vendor/bin/phpcs',
+      bin: ui.ProjectDir + '/vendor/bin/phpcs',
       standard: standard,
       warningSeverity: 0,
       colors: true
@@ -103,10 +99,10 @@ gulp.task('phpcs', function () {
 });
 
 gulp.task('phpmd', function () {
-  var ruleset = fileExists(projectRoot + '/phpmd.xml') ? projectRoot + '/phpmd.xml' : 'unusedcode';
-  return gulp.src(projectRoot + '/src/**/*.php')
+  var ruleset = fileExists(ui.ProjectDir + '/phpmd.xml') ? ui.ProjectDir + '/phpmd.xml' : 'unusedcode';
+  return gulp.src(ui.ProjectDir + '/src/**/*.php')
     .pipe(phpmd({
-      bin: projectRoot + 'vendor/bin/phpmd',
+      bin: ui.ProjectDir + 'vendor/bin/phpmd',
       format: 'text',
       ruleset: ruleset
     }))

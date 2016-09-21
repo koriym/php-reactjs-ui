@@ -1,14 +1,12 @@
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
-var path = require("path");
-var uiConfig = require('./ui.config.js');
+var ui = require('./ui.config.js');
 var webpack = require('webpack');
-var webpackPath = uiConfig.base + uiConfig.publicPath;
 
 module.exports = {
-  entry: uiConfig.entry,
+  entry: ui.entry,
   output: {
     filename: '[name].bundle.js',
-    path: webpackPath,
+    path: ui.projectDir + ui.publicPath,
     publicPath: "http://cdn.example.com/assets/[hash]/"
   },
   module: {

@@ -1,20 +1,23 @@
 var path = require("path");
-var base = path.join(__dirname, '../');
+var projectDir = path.join(__dirname, '../');
 
 module.exports = {
-  // web root (gulp-connect-php.base)
-  base: base + 'var/www',
+  // project root directory
+  projectDir: projectDir,
+  // web root directory
+  publicDir: projectDir + 'var/www',
   // webpack.outout.publicPath
   publicPath: '/build/',
-  // watch to sync folder
-  watch_to_sync: [
-    base + 'src/**/*.php',
-    base + 'var/www/*.php',
+  // watch directory for browsersync
+  watchDir: [
+    projectDir + 'src/**/*.php',
+    projectDir + 'var/www/*.php',
   ],
-  cleanup_dir: [
-    base + 'var/tmp/*',
+  // cleared directory in each run
+  clearDir: [
+    projectDir + 'var/tmp/*',
   ],
-  // webpack entry
+  // webpack.entry
   entry: {
     react: 'src/react.js',
     helloworld: [
