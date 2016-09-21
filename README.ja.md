@@ -77,21 +77,28 @@ composer require reactjs/react-php-v8js
 
 ```javascript
 module.exports = {
-  // web root
-  htdocs: base + 'var/www',
-  // webpack output.path
-  path: base + 'var/www/build',
-  // webpack outout.publicPath
-  publicPath: "http://cdn.example.com/assets/[hash]/",
-  // watch to sync folder
-  watch: [
-    base + 'var/www/build/*',
-    base + '**/*.twig',
+  // project root directory
+  projectDir: projectDir,
+  // web root directory
+  publicDir: projectDir + 'var/www',
+  // webpack.outout.publicPath
+  publicPath: '/build/',
+  // watch directory for browsersync
+  watchDir: [
+    projectDir + 'src/**/*.php',
+    projectDir + 'var/www/*.php',             // add more dirs
   ],
-  // webpack entry
+  // cleared directory in each run
+  clearDir: [
+    projectDir + 'var/tmp/*',                 // add more dirs
+  ],
+  // webpack.entry
   entry: {
-    react: 'src/react.js',
-    helloworld: 'src/testing_examples/helloworld.jsx',
+    react: 'src/react.js',                    // SSR *important* 
+    helloworld: [
+      'webpack-hot-middleware/client',        // HMR *important* 
+      'src/testing_examples/helloworld.jsx',
+    ],
     ssr: 'src/testing_examples/ssr.js',
   }
 };
@@ -136,7 +143,7 @@ npm run lint
 [phpcs](https://github.com/squizlabs/PHP_CodeSniffer)と[phpmd](https://phpmd.org/)の監視を行います。
 
 ```
-npm run php
+npm run phpqa
 ```
 
 注意）監視を行う`test`や`php`は別のターミナルで開いておくといいでしょう。
