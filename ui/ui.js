@@ -24,6 +24,9 @@ module.exports = {
       'webpack-hot-middleware/client',
       'src/testing_examples/helloworld.jsx',
     ],
-    ssr: 'src/testing_examples/ssr.js',
+    ssr: [
+      'webpack-hot-middleware/client',
+      'src/testing_examples/ssr.js',
+    ]
   }
 };
