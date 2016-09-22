@@ -2,7 +2,7 @@ import React from 'react';
 
 const HelloWorld = props => (
   <div>
-    Hello {props.name} !
+    Hello {props.name}
   </div>
 );
 

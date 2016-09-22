@@ -1,42 +1,35 @@
 var gulp = require('gulp');
 var connect = require('gulp-connect-php');
 var browserSync = require('browser-sync').create();
-var webpack = require('webpack-stream');
+var webpack = require('webpack');
 var webpackConfig = require('./webpack.config.js');
-var rimraf = require('rimraf');
-var uiConfig = require('./ui.config.js');
-var path = require('path');
-var projectRoot = path.join(__dirname, '../');
+var webpackDevMiddleware = require('webpack-dev-middleware');
+var webpackHotMiddleware = require('webpack-hot-middleware');
+var webpackStream = require('webpack-stream');
+var ui = require('./ui.js');
+var del = require('del');
 var fileExists = require('file-exists');
 var phpcs = require('gulp-phpcs');
 var phpmd = require('gulp-phpmd-plugin');
-var del = require('del');
-var w = require('webpack');
-var bundler = w(webpackConfig);
-var webpackDevMiddleware = require('webpack-dev-middleware');
-var webpackHotMiddleware = require('webpack-hot-middleware');
+var bundler = webpack(webpackConfig);
+var webpackPath = ui.publicDir + ui.publicPath;
 
-gulp.task('clean', del.bind(null, uiConfig.cleanup_dir, {force: true}));
+gulp.task('clean', del.bind(null, ui.clearDir, {force: true}));
 
 gulp.task('webpack', function () {
-  webpackConfig.watch = true;
   return gulp.src('./src/**')
-    .pipe(webpack(webpackConfig))
-    .pipe(gulp.dest(uiConfig.path));
+    .pipe(webpackStream(webpackConfig))
+    .pipe(gulp.dest(webpackPath));
 });
 
-gulp.task('reload', function () {
+gulp.task('reload', ['clean'], function () {
   browserSync.reload();
 });
 
-gulp.task('reload-php', ['clean'], function () {
-  browserSync.reload();
-});
-
-gulp.task('php',  function () {
+gulp.task('php', ['clean', 'webpack'], function () {
   return connect.server({
     port: 8080,
-    base: uiConfig.htdocs
+    base: ui.publicDir
   })
 });
 
@@ -67,42 +60,37 @@ gulp.task('browser-sync', ['php'], function () {
     files: [
       './src/**/*.css',
       './src/**/*.html',
-      './*.js'
+      '../src/**/*.php',
     ]
   });
 });
 
-gulp.task('watch-reload', ['browser-sync'], function () {
+gulp.task('sync', ['browser-sync'], function () {
   gulp.watch(
-    uiConfig.watch,
+    ui.watchDir,
     ['reload']
   );
+});
+
+gulp.task('php-clean', ['php'], function () {
   gulp.watch(
     '../src/**/*.php',
-    ['reload-php']
+    ['clean']
   );
 });
 
-gulp.task('watch-ui', ['browser-sync'], function () {
-  gulp.watch([
-    './src/**/*.js',
-    './src/**/*.jsx',
-    './src/**/*.css',
-    './*.js'
-  ], ['webpack','reload']);
-});
-
-gulp.task('watch-php', ['php'], function () {
-  gulp.watch([
-    '../src/**/*.php'
-  ], ['clean', 'phpcs', 'phpmd']);
+gulp.task('phpqa', ['php'], function () {
+  gulp.watch(
+    '../src/**/*.php',
+    ['clean', 'phpcs', 'phpmd']
+  );
 });
 
 gulp.task('phpcs', function () {
-  var standard = fileExists(projectRoot + '/phpcs.xml') ? projectRoot + '/phpcs.xml' : 'psr2';
-  return gulp.src(projectRoot + '/src/**/*.php')
+  var standard = fileExists(ui.ProjectDir + '/phpcs.xml') ? ui.ProjectDir + '/phpcs.xml' : 'psr2';
+  return gulp.src(ui.ProjectDir + '/src/**/*.php')
     .pipe(phpcs({
-      bin: projectRoot + '/vendor/bin/phpcs',
+      bin: ui.ProjectDir + '/vendor/bin/phpcs',
       standard: standard,
       warningSeverity: 0,
       colors: true
@@ -111,10 +99,10 @@ gulp.task('phpcs', function () {
 });
 
 gulp.task('phpmd', function () {
-  var ruleset = fileExists(projectRoot + '/phpmd.xml') ? projectRoot + '/phpmd.xml' : 'unusedcode';
-  return gulp.src(projectRoot + '/src/**/*.php')
+  var ruleset = fileExists(ui.ProjectDir + '/phpmd.xml') ? ui.ProjectDir + '/phpmd.xml' : 'unusedcode';
+  return gulp.src(ui.ProjectDir + '/src/**/*.php')
     .pipe(phpmd({
-      bin: projectRoot + 'vendor/bin/phpmd',
+      bin: ui.ProjectDir + 'vendor/bin/phpmd',
       format: 'text',
       ruleset: ruleset
     }))
@@ -122,6 +110,6 @@ gulp.task('phpmd', function () {
 });
 
 // start web server
-gulp.task('start', ['php', 'webpack']);
+gulp.task('start', ['php']);
 // start web server with hot deploy
-gulp.task('dev', ['webpack', 'php', 'browser-sync', 'watch-ui', 'watch-reload']);
+gulp.task('dev', ['sync']);
