@@ -1,5 +1,5 @@
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
-var ui = require('./ui.config.js');
+var ui = require('./ui.js');
 var webpack = require('webpack');
 
 module.exports = {
