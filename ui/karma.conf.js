@@ -40,10 +40,10 @@ module.exports = function (config) {
       module: {
         loaders: [
           {
-            test: /\.js$/,
-            exclude: /\/node_modules\//,
-            loader: 'babel',
-          }
+            test: /\.jsx?$/,
+            loaders: ['react-hot', 'babel'],
+            exclude: /(node_modules)/
+          },
         ]
       },
       externals: {

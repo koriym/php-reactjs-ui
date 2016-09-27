@@ -1,6 +1,6 @@
 import React from 'react';
 import TestUtil from 'react-addons-test-utils';
-import HelloWorld from 'src/testing_examples/components/helloworld';
+import HelloWorld from 'src/testing_examples/components/Helloworld.jsx';
 
 describe('HelloWorld', () => {
   it('renders a div', () => {
