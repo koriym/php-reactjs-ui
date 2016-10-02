@@ -73,7 +73,9 @@ composer require reactjs/react-php-v8js
 
 ## 設定
 
-設定を`ui/ui.config.js`で設定します。
+`ui/ui.js`と`ui/entry.js`で設定します。
+
+`ui/ui.js` アプリケーション
 
 ```javascript
 module.exports = {
@@ -92,15 +94,22 @@ module.exports = {
   clearDir: [
     projectDir + 'var/tmp/*',                 // add more dirs
   ],
-  // webpack.entry
-  entry: {
-    react: 'src/react.js',                    // SSR *important* 
-    helloworld: [
-      'webpack-hot-middleware/client',        // HMR *important* 
-      'src/testing_examples/helloworld.jsx',
-    ],
-    ssr: 'src/testing_examples/ssr.js',
-  }
+};
+```
+
+`ui/entry.js`
+
+```javascript
+module.exports = {
+  react: 'src/react.js',
+  helloworld: [
+    'webpack-hot-middleware/client',
+    'src/testing_examples/helloworld.jsx',
+  ],
+  ssr: [
+    'webpack-hot-middleware/client',
+    'src/testing_examples/ssr.js',
+  ]
 };
 ```
 

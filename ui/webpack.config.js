@@ -1,9 +1,10 @@
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var ui = require('./ui.js');
+var entry = require('./entry.js');
 var webpack = require('webpack');
 
 module.exports = {
-  entry: ui.entry,
+  entry: entry,
   output: {
     filename: '[name].bundle.js',
     path: ui.projectDir + ui.publicPath,
