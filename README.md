@@ -1,3 +1,7 @@
+# PLEASE NOTE, THIS PROJECT IS NO LONGER BEING MAINTAINED
+
+Use [JsUiSkeleton](https://github.com/koriym/Koriym.JsUiSkeleton) istead.
+
 # php-reactjs-ui
 
 [Japanese 日本語](README.ja.md)
